@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useRouter, useSearchParams, Suspense } from "next/navigation"; // Import Suspense from next/navigation
+import { useRouter, useSearchParams } from "next/navigation";
+import { Suspense } from 'react'
 
 import Form from "@components/Form";
 
@@ -15,11 +16,11 @@ const UpdatePrompt = () => {
   useEffect(() => {
     const getPromptDetails = async () => {
       if (!promptId) return; // Tambahkan penanganan jika promptId tidak ada
-  
+
       try {
         const response = await fetch(`/api/prompt/${promptId}`);
         const data = await response.json();
-  
+
         setPost({
           prompt: data.prompt,
           tag: data.tag,
@@ -28,10 +29,10 @@ const UpdatePrompt = () => {
         console.error("Error fetching prompt details:", error);
       }
     };
-  
+
     getPromptDetails(); // Panggil fungsi di dalam useEffect langsung
   }, [promptId]);
-  
+
 
   const updatePrompt = async (e) => {
     e.preventDefault();
